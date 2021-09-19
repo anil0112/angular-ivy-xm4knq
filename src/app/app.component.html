@@ -1,4 +1,74 @@
-<hello name="{{ name }}"></hello>
-<p>
-  Start editing to see some magic happen :)
-</p>
+<h1>Candidate</h1>
+<form [formGroup]="searchForm" (ngSubmit)="onSearch()">
+  <div class=".row">
+    <label for="firstname">Male</label>
+    <input
+      type="checkbox"
+      id="male"
+      name="male"
+      formControlName="male"
+      [(ngModel)]="searchResultForMale"
+    />
+
+    <label for="firstname">Female</label>
+    <input
+      type="checkbox"
+      id="female"
+      name="female"
+      formControlName="female"
+      [(ngModel)]="searchResultForFeMale"
+    />
+
+    <input
+      type="search"
+      id="search"
+      name="search"
+      formControlName="search"
+      placeholder="what are u waiting for"
+      [(ngModel)]="searchByText"
+      onkeyup="onSearchResult(searchByText)"
+    />
+  </div>
+</form>
+
+<br />
+
+<table>
+  <tr>
+    <th>#</th>
+    <th>First Name</th>
+    <th>Last Name</th>
+    <th>email</th>
+    <th>gender</th>
+  </tr>
+  <tbody>
+    <tr *ngFor="let candidate of candidateList">
+      <td>{{ candidate.id }}</td>
+      <td>{{ candidate.first_name }}</td>
+      <td>{{ candidate.last_name }}</td>
+      <td>{{ candidate.email }}</td>
+      <td>{{ candidate.gender }}</td>
+    </tr>
+  </tbody>
+</table>
+<br />
+<h1>Add new Candidate</h1>
+<form [formGroup]="addNewCandidate" (ngSubmit)="onSubmit()">
+  
+    <label for="firstname">firstName</label>
+    <input type="text" id="first" name="male" formControlName="firstName" />
+
+    <label for="lastName">lastName</label>
+    <input type="text" id="lastName" name="lastName" formControlName="lastName" />
+
+  <label for="email">email</label>
+    <input type="text" id="email" name="email" formControlName="email" />
+
+    <label for="male">male</label>
+    <input type="text" id="male" name="male" formControlName="male" />
+    <label for="female">female</label>
+    <input type="text" id="female" name="female" formControlName="female" />
+  <p>
+    <button type="submit">Submit</button>
+  </p>
+</form> 
